@@ -1,6 +1,6 @@
 import './style.css'
 import * as THREE from 'three';
-import { CircleGeometry, WebGL1Renderer } from 'three';
+import { CircleGeometry, RGBADepthPacking, WebGL1Renderer } from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 /**========================================================================
  *                           1.scene
@@ -72,7 +72,7 @@ function addStar(){
     scene.add(star);
 }
 Array(200).fill().forEach(addStar);
-const spaceTexture = new THREE.TextureLoader().load('space4.png');
+const spaceTexture = new THREE.TextureLoader().load('terre4.jpg');
 scene.background = spaceTexture;
 const olitexture =  new THREE.TextureLoader().load('olipt1.jpg');
 const oli = new THREE.Mesh(
@@ -80,18 +80,29 @@ const oli = new THREE.Mesh(
     new THREE.MeshBasicMaterial({map:olitexture})
 );
 scene.add(oli);
+const moonColor = '#FCBC54';
 const moonTexture =  new THREE.TextureLoader().load('moon.jpg');
-const normalTexture = new THREE.TextureLoader().load('moon.jpg');
+const normalTexture = new THREE.TextureLoader().load('normal4.jpg');
+const sphere =  new THREE.SphereGeometry(3,32,32);
+
 const moon = new THREE.Mesh(
-    new THREE.SphereGeometry(3,32,32),
-    new THREE.MeshStandardMaterial( { 
+    sphere,
+    new THREE.MeshStandardMaterial({
         map: moonTexture,
-        normalMap: normalTexture
-    })
+        normalMap: normalTexture,
+        color: moonColor
+    }),
+    
 );
 scene.add(moon);
 moon.position.z = 30;
 moon.position.setX(-10);
+ 
+/**================================================================================================
+ *                                         section for scrool web site
+ *================================================================================================**/
+
+
 // const loader = new THREE.FontLoader();
 // loader.load('fonts/helvetiker_regular.typeface.json', function(font){
 //     const geometry = new THREE.TextGeometry('hello ohstyle',{

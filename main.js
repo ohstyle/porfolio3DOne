@@ -41,9 +41,12 @@ const pointLight = new THREE.PointLight(0xffffff);
 pointLight.position.set(5,5,5);
 const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(pointLight,ambientLight);
-const lightHelper = new THREE.PointLightHelper(pointLight);
-const gridHelper = new THREE.GridHelper(200,50);
-scene.add(lightHelper, gridHelper);
+/**========================================================================
+ *!                           repere gridHelper enlever
+ *========================================================================**/
+// const lightHelper = new THREE.PointLightHelper(pointLight);
+// const gridHelper = new THREE.GridHelper(200,50);
+// scene.add(lightHelper, gridHelper);
 
 /**========================================================================
  *?                           OrbitControls
@@ -99,10 +102,24 @@ moon.position.z = 30;
 moon.position.setX(-10);
  
 /**================================================================================================
- *                                         section for scrool web site
+ *                                         section for move camera scrool web site
+ *                                          document.body.onscrool = moveCamera
  *================================================================================================**/
+function moveCameara(){
+    const t = document.body.getBoundingClientRect().top;
+    moon.rotation.x += 0.05;
+    moon.rotation.y += 0.075;
+    moon.rotation.z += 0.05;
 
+    oli.rotation.x += 0.01; 
+    oli.rotation.y += 0.01;
 
+    camera.position.x = t * -0.01;
+    camera.position.y = t * -0.0002;
+    camera.position.z = t * -0.0002;
+    
+}
+document.body.onscroll = moveCameara;
 // const loader = new THREE.FontLoader();
 // loader.load('fonts/helvetiker_regular.typeface.json', function(font){
 //     const geometry = new THREE.TextGeometry('hello ohstyle',{

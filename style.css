@@ -8,8 +8,13 @@ canvas {
 
 
 :root {
+  --dark-niv1:rgba(33,33,33,1);
+  --dark-niv2: rgba(33,33,33,0.8);
+  --dark-niv3: rgba(33,33,33,0.5);
+
   --dark-bg: rgba(15, 15, 15, 0.95);
   --spacing: 350px;
+  --backgroundText: rgba(251,216,151,0.5);
 
   font-family: brandon-grotesque, sans-serif;
   font-weight: 400;
@@ -45,7 +50,7 @@ canvas {
 
 
   header {
-    background: var(--dark-bg);
+    background: var(--dark-niv3);
     grid-column: 2 / span 5;
     font-size: 2.5rem;
     padding: 2rem;
@@ -55,10 +60,18 @@ canvas {
   section {
     grid-column: 2 / 8;
     padding: 1rem;
-    background: var(--dark-bg);
     font-size: 1.25rem;
     line-height: 1.5;
     margin-bottom: var(--spacing);
+  }
+  .section1{
+    background: var(--dark-niv1);
+  }
+  .section2{
+    background: var(--dark-niv2);
+  }
+  .section3{
+    background: var(--dark-niv2);
   }
 
   blockquote {
@@ -70,7 +83,7 @@ canvas {
 
   blockquote p {
     color: black;
-    background-color: white;
+    background-color: var(--backgroundText);
     font-size: 4rem;
     display: inline;
     line-height: 1;
